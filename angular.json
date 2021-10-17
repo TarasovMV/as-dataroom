@@ -1,7 +1,42 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "as-dataroom-api": {
+      "projectType": "library",
+      "root": "projects/as-dataroom-api",
+      "sourceRoot": "projects/as-dataroom-api/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/as-dataroom-api/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/as-dataroom-api/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/as-dataroom-api/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/as-dataroom-api/src/test.ts",
+            "tsConfig": "projects/as-dataroom-api/tsconfig.spec.json",
+            "karmaConfig": "projects/as-dataroom-api/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "as-dataroom-api"
 }
